@@ -31,3 +31,6 @@ Write the command /help_for_admins to see the administration capabilities. You c
 #### Github - https://github.com/ella-chetvertak
 #### Telegram - https://t.me/Grooove4life
 
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
