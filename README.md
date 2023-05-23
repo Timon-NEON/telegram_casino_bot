@@ -1,4 +1,4 @@
-# Teegram casino bot
+# Telegram casino bot
 
 Telegram casino bot - working visual telegram bot at https://t.me/Tim_casino_bot with open source software written in Python that you can improve.
 
