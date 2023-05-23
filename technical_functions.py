@@ -32,7 +32,7 @@ dice_values = {"Poker":'Покер', "Square":'Каре', "Full House":'Фул �
 
 """cases of receiving money"""
 
-source_of_money = ['Ви зустріли Містера Біста', "Ви знайшли нафту на ваші загородній ділянці", "Нігерійський принц вирішив поділитися із вами спадком",
+source_of_money = ['Ви зустріли Містера Біста', "Ви знайшли нафту на вашій загородній ділянці", "Нігерійський принц вирішив поділитися із вами спадком",
                    "Ви спіймали золоту рибку", "Ви створили вдалого телеграм-бота", "Ви знайшли піратський скарб", "Помилка банку", "Ви вчасно продали свій Біткойн",
                    "Бабуся дала вам подарунок", "Ви вчасно вийшли з фінансової піраміди", "Ви пограбували банк"]
 
@@ -58,7 +58,7 @@ def bet (message, balance):
 
 """database connection"""
 
-conn = sqlite3.connect('db/teleBotDatabase.db', check_same_thread=False)
+conn = sqlite3.connect('database1.db', check_same_thread=False)
 cursor = conn.cursor()
 load_dotenv()
 
@@ -131,9 +131,12 @@ def getLastBet(user_id: int):
 """request the user's status"""
 
 def check_status (user_id):
-   cursor.execute(f"SELECT Status FROM userI WHERE USER_ID = '{user_id}'")
-   result = cursor.fetchone()
-   return result[0]
+   try:
+    cursor.execute(f"SELECT Status FROM userI WHERE USER_ID = '{user_id}'")
+    result = cursor.fetchone()
+    return result[0]
+   except:
+    bot.send_message(user_id, "Введіть команду /start")
 
 """increases the number of played games by user"""
 
@@ -221,8 +224,12 @@ def set_status (msg):
 """granting administrator status to the first user"""
 
 def get_admin_for_first_user(msg):
+  cursor.execute("SELECT id FROM userI")
+
+  massive_big = cursor.fetchall()
+  min_num = min(massive_big)[0]
   sql = '''UPDATE `userI` SET STATUS=(?) WHERE   ID = (?) '''
-  cursor.execute(sql, (2, 1))
+  cursor.execute(sql, (2, min_num))
   conn.commit()
 
 """sends a message to all users"""
@@ -233,7 +240,7 @@ def say (msg):
   for user_id in all_users:
     bot.send_message(user_id, text)
     
-"""getting user_id from  all users"""
+"""getting user_id from all users"""
 
 def getAllUser_ID():
   all = []
