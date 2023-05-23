@@ -147,17 +147,23 @@ def handle_text(message):
     elif message.text == "💸 Отримати щоденний приз 💸":
       get_rewards (message)
     elif message.text == "🙋‍♂️ Профіль 🙋‍♀️": 
-      bot.send_message(message.chat.id, "Нік: " + message.from_user.username +
-                       "\nБаланс: " + str(technical_functions.get_info_balance(message.from_user.id)[0]) + '$' + 
-                       "\nКількість ігор: " + str(technical_functions.check_counting_gameds(message.from_user.id)) + 
-                       '\n\n/help - дізнайтеся більше про гру', reply_markup=technical_functions.start_menu)
+      try:
+        bot.send_message(message.chat.id, "Нік: " + message.from_user.username +
+                         "\nБаланс: " + str(technical_functions.get_info_balance(message.from_user.id)[0]) + '$' + 
+                         "\nКількість ігор: " + str(technical_functions.check_counting_gameds(message.from_user.id)) + 
+                         '\n\n/help - дізнайтеся більше про гру', reply_markup=technical_functions.start_menu)
+      except:
+        bot.send_message(message.chat.id, "Нік: " +
+                         "\nБаланс: " + str(technical_functions.get_info_balance(message.from_user.id)[0]) + '$' + 
+                         "\nКількість ігор: " + str(technical_functions.check_counting_gameds(message.from_user.id)) + 
+                         '\n\n/help - дізнайтеся більше про гру', reply_markup=technical_functions.start_menu)
       
     elif message.text == "ℹ️ Про нас ℹ️": 
         bot.send_message(message.chat.id, "Засновано WEXEL Union" + 
                          "\nУчасники проекту @Timon_NEON та @Grooove4life"  +
                        "\nДякуємо за вашу підтримку та кожний кинутий кубик!" + 
                        "\nПосилання на репозіторій програми на Github: https://github.com/Timon-NEON/telegram_casino_bot" + 
-                       "\nНасолоджуйтесь безпечною грою!",  reply_markup=technical_functions.start_menu)
+                       "\nНасолоджуйтесь безпечною грою!",  reply_markup=technical_functions.start_menu, disable_web_page_preview=True)
       
     elif message.text == "🎲 Покер 🎲" or message.text == "7⃣ Слоти 7⃣" or message.text == "Спіни" or message.text == "Покер":
       handle_games(message)
