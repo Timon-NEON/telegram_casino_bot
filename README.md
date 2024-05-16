@@ -28,7 +28,7 @@ Write the command /help_for_admins to see the administration capabilities. You c
 
 ### Chetvertak Oleg
 
-#### Github - https://github.com/ella-chetvertak
+#### Github - https://github.com/oleh-chetvertak
 #### Telegram - https://t.me/Grooove4life
 
 ## License
